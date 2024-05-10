@@ -48,7 +48,7 @@ function Navbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        TaskHub
+                        Todo App
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

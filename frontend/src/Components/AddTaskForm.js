@@ -8,6 +8,9 @@ import TextField from "@mui/material/TextField";
 // import PublishIcon from '@mui/icons-material/Publish';
 // import { Icon } from '@mui/material';
 // import InfoIcon from '@mui/icons-material/Info';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+
 import Typography from "@mui/material/Typography";
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import Snackbar from '@mui/material/Snackbar';
@@ -38,7 +41,7 @@ const AddTaskForm = () => {
                 initialValues={{
                     title: '',
                     // taskImage: null,
-                    author: '',
+                    status: '',
                     content: '',
                     date: null
                 }}
@@ -58,11 +61,11 @@ const AddTaskForm = () => {
                     //             return value && SUPPORTED_FORMATS.includes(value?.type)
                     //         }
                     //     ),
-                    author: Yup.string()
-                        .required('Author Name is Required'),
+                    status: Yup.string()
+                        .required('Status Name is Required'),
                     content: Yup.string()
                         .required('Content is Required'),
-                    date: Yup.date().required("Publication Date is Required"),
+                    date: Yup.date().required("Date is Required"),
                 })}
                 onSubmit={(values, actions) => {
 
@@ -85,7 +88,7 @@ const AddTaskForm = () => {
 
                     // Append data to the FormData object
                     formData.append('title', values.title);
-                    formData.append('author', values.author);
+                    formData.append('status', values.status);
                     formData.append('publication_date', formattedDate);
                     formData.append('content', values.content);
                     // formData.append('image_path', values.taskImage);
@@ -208,22 +211,34 @@ const AddTaskForm = () => {
                                     marginTop: 0,
                                     marginBottom: -1.2
                                 }}>
-                                Author *
+                                Status *
                             </Typography>
 
-                            <TextField
+                            {/* <TextField
                                 sx={{ width: "100px" }}
-                                id="author"
-                                name="author"
+                                id="status"
+                                name="status"
                                 onChange={props.handleChange}
-                                value={props.values.author}
+                                value={props.values.status}
                                 variant="outlined"
-                                error={props.touched.author && Boolean(props.errors.author)}
-                                helperText={props.touched.author && props.errors.author}
+                                error={props.touched.status && Boolean(props.errors.status)}
+                                helperText={props.touched.status && props.errors.status}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
-                            />
+                            /> */}
+                            <Select
+                                name='status'
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                // style={{ width: 258 }}
+                                sx={{ width: "100px" }}
+                                onChange={props.handleChange}
+                                value={props.values.status}
+                            >
+                                <MenuItem value={"Pending"}>Pending</MenuItem>
+                                <MenuItem value={"Publish"}>Completed</MenuItem>
+                            </Select>
                         </Box>
 
                         <Box
@@ -241,7 +256,7 @@ const AddTaskForm = () => {
                                     marginTop: 0,
                                     marginBottom: -1.2
                                 }}>
-                                Publication Date *
+                                Date *
                             </Typography>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DesktopDatePicker

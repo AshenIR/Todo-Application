@@ -38,8 +38,8 @@ const ViewTask = () => {
                 }
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', mt: 2 }}>
-                <Typography variant="body1" color="#EFA491">Publication Date: {task && task.publication_date}</Typography>
-                <Typography variant="body1" color="#EFA491">Author: {task && task.author}</Typography>
+                <Typography variant="body1" color="#EFA491">Date: {task && task.publication_date}</Typography>
+                <Typography variant="body1" color="#EFA491">Status: {task && task.status}</Typography>
             </Box>
             <Box sx={{ mt: 2, ml: 4, mr: 4, textAlign: 'center' }}>
                 <Typography variant='body2'>{task && task.content}</Typography>

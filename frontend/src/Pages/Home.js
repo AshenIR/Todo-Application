@@ -39,7 +39,7 @@ const Home = () => {
 
     return (
         <Box sx={{ padding: 5 }}>
-            <Typography align='center' color='#f1356d' variant='h4'>Task List</Typography>
+            <Typography align='center' color='#f1356d' variant='h4'>Todo List</Typography>
             {loading &&
                 <Box sx={{ display: 'flex', justifyContent: 'center', pt: 10 }}>
                     <CircularProgress size={60} />

@@ -42,7 +42,7 @@ export default function TaskCard({ task, setTaskData, setOpen, setIsDelete }) {
                     />
                     <CardContent>
                         <Typography variant="body1" color="#EFA491">
-                            Author - {task.author}
+                            Status - {task.status}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

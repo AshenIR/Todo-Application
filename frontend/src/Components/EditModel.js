@@ -16,6 +16,9 @@ import CloseIcon from '@mui/icons-material/Close';
 // import PublishIcon from '@mui/icons-material/Publish';
 // import { Icon } from '@mui/material';
 // import InfoIcon from '@mui/icons-material/Info';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -66,7 +69,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 
-const EditModel = ({open , setOpen, taskData}) => {
+const EditModel = ({ open, setOpen, taskData }) => {
 
     // const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"]
     // const imgRef = useRef(null)
@@ -81,8 +84,8 @@ const EditModel = ({open , setOpen, taskData}) => {
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
                 open={open}
-                PaperProps={{ sx: {mt: 5, minWidth: 700 } }}
-                >
+                PaperProps={{ sx: { mt: 5, minWidth: 700 } }}
+            >
                 <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
                     {taskData.title}
                 </BootstrapDialogTitle>
@@ -90,7 +93,7 @@ const EditModel = ({open , setOpen, taskData}) => {
                     initialValues={{
                         title: taskData ? taskData.title : '',
                         // taskImage: taskData ? taskData.image_path : null,
-                        author: taskData ? taskData.author : '',
+                        status: taskData ? taskData.status : '',
                         content: taskData ? taskData.content : '',
                         date: null,
                     }}
@@ -110,11 +113,11 @@ const EditModel = ({open , setOpen, taskData}) => {
                         //             return value && SUPPORTED_FORMATS.includes(value?.type)
                         //         }
                         //     ),
-                        author: Yup.string()
-                            .required('Author Name is Required'),
+                        status: Yup.string()
+                            .required('Status Name is Required'),
                         content: Yup.string()
                             .required('Content is Required'),
-                        date: Yup.date().required("Publication Date is Required"),
+                        date: Yup.date().required("Date is Required"),
                     })}
                     onSubmit={(values, actions) => {
 
@@ -137,7 +140,7 @@ const EditModel = ({open , setOpen, taskData}) => {
 
                         // Append data to the FormData object
                         formData.append('title', values.title);
-                        formData.append('author', values.author);
+                        formData.append('status', values.status);
                         formData.append('publication_date', formattedDate);
                         formData.append('content', values.content);
                         // formData.append('image_path', values.taskImage);
@@ -257,22 +260,34 @@ const EditModel = ({open , setOpen, taskData}) => {
                                             marginTop: 0,
                                             marginBottom: -1.2
                                         }}>
-                                        Author *
+                                        Status *
                                     </Typography>
 
-                                    <TextField
+                                    {/* <TextField
                                         sx={{ width: "100px" }}
-                                        id="author"
-                                        name="author"
+                                        id="status"
+                                        name="status"
                                         onChange={props.handleChange}
-                                        value={props.values.author}
+                                        value={props.values.status}
                                         variant="outlined"
-                                        error={props.touched.author && Boolean(props.errors.author)}
-                                        helperText={props.touched.author && props.errors.author}
+                                        error={props.touched.status && Boolean(props.errors.status)}
+                                        helperText={props.touched.status && props.errors.status}
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
-                                    />
+                                    /> */}
+                                    <Select
+                                        name='status'
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        // style={{ width: 258 }}
+                                        sx={{ width: "100px" }}
+                                        onChange={props.handleChange}
+                                        value={props.values.status}
+                                    >
+                                        <MenuItem value={"Pending"}>Pending</MenuItem>
+                                        <MenuItem value={"Publish"}>Completed</MenuItem>
+                                    </Select>
                                 </Box>
 
                                 <Box
@@ -290,7 +305,7 @@ const EditModel = ({open , setOpen, taskData}) => {
                                             marginTop: 0,
                                             marginBottom: -1.2
                                         }}>
-                                        Publication Date *
+                                        Date *
                                     </Typography>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <DesktopDatePicker
