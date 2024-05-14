@@ -17,7 +17,7 @@ const DeleteModel = ({ isDelete, setIsDelete, taskData, setSnackBar, setToggle, 
 
     //Delete Request
     const handleDelete = () => {
-        axios.delete(`http://localhost:8000/tasks/${taskData.id}`).then((res) => {
+        axios.delete(`https://localhost:7034/api/Todo/${taskData.id}`).then((res) => {
             setIsDelete(false);
             setSnackBar(true)
             setError(false)

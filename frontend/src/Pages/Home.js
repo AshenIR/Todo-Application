@@ -27,7 +27,7 @@ const Home = () => {
         // Get Request for fetch all tasks
         function getTasks() {
             setLoading(true)
-            axios.get(`http://localhost:8000/tasks`).then((res) => {
+            axios.get(`https://localhost:7034/api/Todo`).then((res) => {
                 setTasks(res.data)
                 setLoading(false)
             }).catch((err) => {

@@ -15,7 +15,7 @@ const ViewTask = () => {
     useEffect(() => {
         // Get Request for fetch a task
         function getTask() {
-            axios.get(`http://localhost:8000/tasks/${id}`).then((res) => {
+            axios.get(`https://localhost:7034/api/Todo/${id}`).then((res) => {
                 setTask(res.data);
             }).catch((err) => {
                 alert(err.message);
@@ -31,18 +31,12 @@ const ViewTask = () => {
                 <Typography sx={{ margin: 'auto' }} color='#f1356d' variant='h4'>{task && task.title}</Typography>
             </Box>
 
-            <Box textAlign={"center"} mt={2}>
-                {task &&
-                <img src={`http://localhost:8000/${task.image_path}`}
-                    alt='img' style={{ maxWidth: '40%', height: 'auto' }} />
-                }
-            </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', mt: 2 }}>
-                <Typography variant="body1" color="#EFA491">Date: {task && task.publication_date}</Typography>
+                {/* <Typography variant="body1" color="#EFA491">Content: {task && task.content}</Typography> */}
                 <Typography variant="body1" color="#EFA491">Status: {task && task.status}</Typography>
             </Box>
             <Box sx={{ mt: 2, ml: 4, mr: 4, textAlign: 'center' }}>
-                <Typography variant='body2'>{task && task.content}</Typography>
+                <Typography variant='body2'>{task && task.description}</Typography>
 
             </Box>
 

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
@@ -32,13 +31,6 @@ export default function TaskCard({ task, setTaskData, setOpen, setIsDelete }) {
                 <CardActionArea onClick={() => navigate(`/viewtask/${task.id}`)}>
                     <CardHeader
                         title={task.title}
-                        subheader={task.publication_date}
-                    />
-                    <CardMedia
-                        component="img"
-                        height="194"
-                        image={`http://localhost:8000/${task.image_path}`}
-                        alt="Task"
                     />
                     <CardContent>
                         <Typography variant="body1" color="#EFA491">
