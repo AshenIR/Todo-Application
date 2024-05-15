@@ -51,7 +51,7 @@ namespace backend.Controllers
             return CreatedAtAction(nameof(GetTodos), new { id = todo.Id }, todo);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
 
         public async Task<IActionResult> PutTodo(int id, TodoModel todo)
         {

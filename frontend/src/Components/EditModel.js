@@ -95,19 +95,20 @@ const EditModel = ({ open, setOpen, taskData }) => {
                     })}
                     onSubmit={(values, actions) => {
 
-
-                        const formData = new FormData();
-
-                        // Append data to the FormData object
-                        formData.append('Title', values.title);
-                        formData.append('Status', values.status);
-                        formData.append('Description', values.content);
+                        const body = {
+                            Id: taskData.id,
+                            Title: values.title,
+                            Status: values.status,
+                            Description: values.content
+                        }
 
                         //Make a PUT request using Axios
-                        axios.put(`https://localhost:7034/api/Todo/${taskData.id}`, formData).then((res) => {
+                        axios.put(`https://localhost:7034/api/Todo/${taskData.id}`, body).then((res) => {
                             actions.resetForm()
                             setOpen(false);
-                        }).catch((err) => {
+                        }).catch(
+                            (err) => {
+                                console.log('errr', err)
                         })
                     }}
                 >
